@@ -23,11 +23,6 @@
 
 */
 
-
-extern "C" {
-#include <osmocom/core/utils.h>
-#include <osmocom/gsm/a5.h>
-}
 #include "GSML1FEC.h"
 #include "GSMCommon.h"
 #include "GSMSAPMux.h"
@@ -319,12 +314,7 @@ unsigned L1Encoder::ARFCN() const
 
 void L1Encoder::encrypt(BitVector &burst, uint32_t FN) const
 {
-	if (mCipherID > 0) {
-		ubit_t ks[114];
-		osmo_a5(mCipherID, mKc, FN, ks, NULL);
-		unsigned e = burst.xor_apply(ks, 114);
-		if (e) LOG(ERR) << "Length mismatch while applying gamma: " << e;
-	}
+	LOG(WARNING) << "L1Encoder::encrypt: Not implemented.";
 }
 
 
@@ -415,12 +405,7 @@ void L1Decoder::countBadFrame()
 
 void L1Decoder::decrypt(SoftVector &burst, uint32_t FN) const
 {
-	if (mCipherID > 0) {
-		ubit_t ks[114];
-		osmo_a5(mCipherID, mKc, FN, NULL, ks);
-		unsigned e = burst.xor_apply(ks, 114);
-		if (e) LOG(ERR) << "Length mismatch while applying gamma: " << e;
-	}
+	LOG(WARNING) << "L1Encoder::decrypt: Not implemented.";
 }
 
 

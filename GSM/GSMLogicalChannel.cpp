@@ -26,12 +26,6 @@
 
 */
 
-
-
-extern "C" {
-#include <osmocom/core/utils.h>
-}
-
 #include "GSML3RRElements.h"
 #include "GSML3Message.h"
 #include "GSML3RRMessages.h"
@@ -70,11 +64,9 @@ void LogicalChannel::open()
 
 bool LogicalChannel::setKc(const char * key)
 {
-	uint8_t Kc[8];
-	if (!mL1) return false;
-	if(osmo_hexparse(key, Kc, 8) != 8) return false;
+	uint8_t Kc[8]={0};
 	mL1->setKc(Kc);
-	if (mSACCH) mSACCH->setKc(key);
+	LOG(WARNING) << "setKc: Not implemented.";
 	return true;
 }
 
