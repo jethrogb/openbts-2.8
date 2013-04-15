@@ -205,7 +205,11 @@ private:
   inline double getSampleRate() {return actualSampleRate;}
   inline double numberRead() { return samplesRead; }
   inline double numberWritten() { return samplesWritten;}
-
+  
+  void setTxAntenna(std::string &name) {};
+  void setRxAntenna(std::string &name) {};
+  std::string getRxAntenna() { return "Default Antenna"; };
+  std::string getTxAntenna() { return "Default Antenna"; };
 };
 
 #endif // _USRP_DEVICE_H_
